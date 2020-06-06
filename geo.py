@@ -12,7 +12,7 @@ import pandas as pd
 import math
 
 
-gmaps = googlemaps.Client(key='AIzaSyBnSP_VZ3R-lx4RzOs9DXKOv65lhG99sN8')
+gmaps = googlemaps.Client(key='Enter your key here')
 
 
 
