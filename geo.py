@@ -1,19 +1,14 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sat May  9 15:09:49 2020
-
-@author: abhinavkhare
-"""
-
 import googlemaps
-from datetime import datetime
 import pandas as pd
 import math
 
 
-key = pd.read_csv('Path')
+
+
+key = pd.read_csv('key.csv')
+
 gmaps = googlemaps.Client(key= key.columns[0])
+
 
 
 def getGeoLocation(df, city):
@@ -77,11 +72,11 @@ def getDistanceDurationBayes(df_filtered, df_post):
     Longitudes = df_post['Longitude'].to_numpy().tolist()
     Origins = [[Latitudes[i], Longitudes[i]] for i in range(len(Latitudes))]
     Matrix = gmaps.distance_matrix(origins = Origins, destinations = Destinations)
-    Distance = {(i,j):  Matrix['rows'][i]['elements'][j]['distance']['text'] for i in range(0,len(Origins)) 
-                 for j in range(0,len(Destinations)) if i != j}
+    Distance = {(i,p):  Matrix['rows'][i]['elements'][p]['distance']['text'] for i in range(0,len(Origins)) 
+                 for p in range(0,len(Destinations)) if i != p}
     d = {key: float(str.split(Distance[key],sep=' ')[0]) for key in Distance}
-    Duration = {(i,j):  Matrix['rows'][i]['elements'][j]['duration']['text'] for i in range(0,len(Origins)) 
-                 for j in range(0,len(Destinations)) if i != j}
+    Duration = {(i,p):  Matrix['rows'][i]['elements'][p]['duration']['text'] for i in range(0,len(Origins)) 
+                 for p in range(0,len(Destinations)) if i != p}
     t = {key: float(str.split(Duration[key],sep=' ')[0]) for key in Duration}
     
     return d,t 
@@ -89,7 +84,7 @@ def getDistanceDurationBayes(df_filtered, df_post):
 
 
 
-
+### Followng code was for testing the function 
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
     
@@ -101,6 +96,6 @@ lon = -80.373044
 r = 1
 
 df_filtered = getGasStationWithinRadius(df_miami, lat, lon, r)
-d,t = getDistanceDuration(df_filtered, lat, lon)
-
+d1,t1 = getDistanceDurationSearch(df_filtered, lat, lon)
+d2,t2 = getDistanceDurationBayes(df_filtered, lat, lon)
 
