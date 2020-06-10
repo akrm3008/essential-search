@@ -3,7 +3,7 @@ import math
 import datetime
 import pandas as pd
 import numpy as np
-from geo import getDistanceDuration
+from locations_and_distance import getDistanceDuration
 
 #import theano
 #import theano.tensor as T
