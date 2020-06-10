@@ -1,13 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sat May  9 15:09:49 2020
-
-@author: abhinavkhare
-"""
-
 import googlemaps
-from datetime import datetime
 import pandas as pd
 import math
 
