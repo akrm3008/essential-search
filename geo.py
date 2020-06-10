@@ -12,8 +12,8 @@ import pandas as pd
 import math
 
 
-gmaps = googlemaps.Client(key='Enter your key here')
-
+key = pd.read_csv('Path')
+gmaps = googlemaps.Client(key= key.columns[0])
 
 
 def getGeoLocation(df, city):
