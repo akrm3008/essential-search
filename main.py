@@ -26,14 +26,14 @@ lon = -80.193
 
 
 #Getting gas stations near the searcher within a radius 
-r1 = 2   
+r1 = 1  
 df = pd.read_csv('gas_stations_florida.csv', usecols = ['NAME', 'ADDRESS', 'CITY','COUNTY'])
 df_miami = getGeoLocation(df, 'MIAMI', gmaps)
-Gas_Stations = getGasStationWithinRadius(df_miami, lat, lon, r1, gmaps)
+Gas_stations = getGasStationWithinRadius(df_miami, lat, lon, r1, gmaps)
 
 
 # Getting social posts within a radius of the searcher and the gas stations 
-r2 = 5
+r2 = 2
 Path1 = "/Users/abhinavkhare/Documents/Phd project/Results/results_with_final_data/gas_tweets_till15th_v1.csv"
 Path2 = "/Users/abhinavkhare/Documents/Phd Project/Data/Data/tweets.csv"
 df_label = pd.read_csv(Path1, encoding = "ISO-8859-1")
@@ -51,7 +51,8 @@ Post_data = getSocialMediaWithinRadius(Post_data, lat, lon, r2, gmaps)
 
 # Retreive relevant parameters for the Bayesian Model 
 Date = '09/07/17'
-nV, nT, nP, Gas_stations_dict, Post_dict, Obs_times_dict, TravelDuration_data, Distance_data, Time_lag = RetreiveData(Post_data, Gas_Stations, Date )
+Obs_times = None 
+nV, nT, nP, Gas_stations_dict, Post_dict, Obs_times_dict, Obs_times, TravelDuration_data, Distance_data, Time_lag = RetreiveData(Post_data, Gas_stations, Obs_times, Date )
 
 
 
@@ -132,3 +133,8 @@ comparison_list = [[x[0], x[1], y, distance(y,x[2]), expected_time_find_gas(y,x[
 
 comparison_df = pd.DataFrame(comparison_list, columns = ['n','seed', 'path', 'path_distance', 'expected_time_travel', 'expected_time_findgas',
                                        'proabability_findgas'])
+
+
+
+
+
