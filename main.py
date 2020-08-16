@@ -34,8 +34,8 @@ Gas_stations = getGasStationWithinRadius(df_miami, lat, lon, r1, gmaps)
 
 # Getting social posts within a radius of the searcher and the gas stations 
 r2 = 2
-Path1 = "/Users/abhinavkhare/Documents/Phd project/Results/results_with_final_data/gas_tweets_till15th_v1.csv"
-Path2 = "/Users/abhinavkhare/Documents/Phd Project/Data/Data/tweets.csv"
+Path1 = "xxxxx"
+Path2 = "xxxxx"
 df_label = pd.read_csv(Path1, encoding = "ISO-8859-1")
 df_post  = pd.read_csv(Path2, encoding = "ISO-8859-1")
 
